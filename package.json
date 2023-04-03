@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Backend for leave day app",
   "main": "index.js",
+  "engines": {
+    "node": "^16.13.0"
+  },
   "scripts": {
     "dev": "nodemon server.js"
   },

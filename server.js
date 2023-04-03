@@ -11,6 +11,11 @@ const compression = require("compression")
 const MONGODB_URI = process.env.MONGODB_URI
 const PORT = process.env.PORT
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*")
+  next()
+})
+
 //DB connection
 mongoose.connect(MONGODB_URI)
 mongoose.connection.on("connected", () => {
@@ -30,12 +35,7 @@ const leaveRequestRoutes = require("./routes/leaveRequest.routes")
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(morgan("dev"))
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-    credentials: true,
-  })
-)
+app.use(cors())
 app.use(helmet())
 app.use(compression())
 
