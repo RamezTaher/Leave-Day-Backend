@@ -11,6 +11,7 @@ const router = require("express").Router()
 router.post("/", createDepartment)
 router.get("/", getDepartments)
 router.get("/:id", getDepartmentById)
+
 router.delete("/:id", deleteDepartment)
 router.put("/:id", udpateDepartment)
 
