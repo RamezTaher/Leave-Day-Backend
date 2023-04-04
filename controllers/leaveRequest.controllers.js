@@ -32,6 +32,15 @@ const getLeaveRequestById = async (req, res) => {
     return res.status(500).json(err)
   }
 }
+const getLeaveRequestByEmployee = async (req, res) => {
+  const id = req.params.id
+  try {
+    const leaveRequests = await LeaveRequest.find({ employee: id })
+    return res.status(200).json(leaveRequests)
+  } catch (err) {
+    return res.status(500).json(err)
+  }
+}
 
 const deleteLeaveRequest = async (req, res) => {
   const id = req.params.id
@@ -63,4 +72,5 @@ export {
   createLeaveRequest,
   deleteLeaveRequest,
   udpateLeaveRequest,
+  getLeaveRequestByEmployee,
 }

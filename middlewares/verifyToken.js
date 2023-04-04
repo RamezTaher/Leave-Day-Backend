@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken"
-module.exports = function (req, res, next) {
+const verifyToken = (req, res, next) => {
   const token = req.header("Authorization")
   if (!token) {
     return res.status(403).json({ message: "no token provided" })
@@ -12,3 +12,5 @@ module.exports = function (req, res, next) {
     return res.status(403).json({ message: "invalid token" })
   }
 }
+
+export default verifyToken
