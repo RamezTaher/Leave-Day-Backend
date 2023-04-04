@@ -45,11 +45,9 @@ const login = async (req, res) => {
     if (!validPassword) {
       return res.status(401).json("Wrong Email/Password")
     }
-    const token = jwt.sign(
-      { _id: existEmployee._id, email: existEmployee.email },
-      "rgiodfjgosq",
-      { expiresIn: "2 days" }
-    )
+    const token = jwt.sign({ _id: existEmployee._id }, process.env.TOKEN_KEY, {
+      expiresIn: "2 days",
+    })
     return res.status(200).json({ employee: existEmployee, token: token })
   } catch (err) {
     return res.status(500).json(err)
