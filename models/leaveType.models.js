@@ -1,6 +1,6 @@
-const mongoose = require("mongoose")
+import mongoose from "mongoose"
 
-const leaveTypeSchema = new mongoose.Schema(
+const leaveTypeSchema = mongoose.Schema(
   {
     name: {
       type: String,
@@ -15,4 +15,6 @@ const leaveTypeSchema = new mongoose.Schema(
   { timestamps: true }
 )
 
-module.exports = mongoose.model("LeaveType", leaveTypeSchema)
+const LeaveType = mongoose.model("LeaveType", leaveTypeSchema)
+
+export default LeaveType

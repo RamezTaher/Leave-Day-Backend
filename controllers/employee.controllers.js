@@ -1,8 +1,8 @@
-const employeeModels = require("../models/employee.models")
+import Employee from "../models/employee.models.js"
 
 const getEmployees = async (req, res) => {
   try {
-    const employees = await employeeModels.find()
+    const employees = await Employee.find()
     return res.status(200).json(employees)
   } catch (err) {
     return res.status(500).json(err)
@@ -12,7 +12,7 @@ const getEmployees = async (req, res) => {
 const getEmployeeById = async (req, res) => {
   const id = req.params.id
   try {
-    const employee = await employeeModels.findById(id)
+    const employee = await Employee.findById(id)
     return res.status(200).json(employee)
   } catch (err) {
     return res.status(500).json(err)
@@ -23,7 +23,7 @@ const udpateEmployee = async (req, res) => {
   const id = req.params.id
 
   try {
-    const employee = await employeeModels.findByIdAndUpdate(id, req.body, {
+    const employee = await Employee.findByIdAndUpdate(id, req.body, {
       new: true,
     })
     return res.status(200).json(employee)
@@ -32,5 +32,4 @@ const udpateEmployee = async (req, res) => {
   }
 }
 
-module.exports.getEmployees = getEmployees
-module.exports.getEmployeeById = getEmployeeById
+export { getEmployees, getEmployeeById }

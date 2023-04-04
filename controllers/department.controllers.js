@@ -1,7 +1,7 @@
-const departmentModels = require("../models/department.models")
+import Department from "../models/department.models.js"
 
 const createDepartment = async (req, res) => {
-  const newDepartment = new departmentModels({
+  const newDepartment = new Department({
     name: req.body.name,
   })
   try {
@@ -14,7 +14,7 @@ const createDepartment = async (req, res) => {
 
 const getDepartments = async (req, res) => {
   try {
-    const departments = await departmentModels.find()
+    const departments = await Department.find()
     return res.status(200).json(departments)
   } catch (err) {
     return res.status(500).json(err)
@@ -24,7 +24,7 @@ const getDepartments = async (req, res) => {
 const getDepartmentById = async (req, res) => {
   const id = req.params.id
   try {
-    const department = await departmentModels.findById(id)
+    const department = await Department.findById(id)
     return res.status(200).json(department)
   } catch (err) {
     return res.status(500).json(err)
@@ -34,7 +34,7 @@ const deleteDepartment = async (req, res) => {
   const id = req.params.id
 
   try {
-    const deletedDepartment = await departmentModels.findByIdAndDelete(id)
+    const deletedDepartment = await Department.findByIdAndDelete(id)
     res.json({ message: "Department deleted successfully" })
   } catch (err) {
     res.status(500).json(err)
@@ -45,7 +45,7 @@ const udpateDepartment = async (req, res) => {
   const id = req.params.id
 
   try {
-    const department = await departmentModels.findByIdAndUpdate(id, req.body, {
+    const department = await Department.findByIdAndUpdate(id, req.body, {
       new: true,
     })
     return res.status(200).json(department)
@@ -54,8 +54,10 @@ const udpateDepartment = async (req, res) => {
   }
 }
 
-module.exports.createDepartment = createDepartment
-module.exports.getDepartments = getDepartments
-module.exports.getDepartmentById = getDepartmentById
-module.exports.deleteDepartment = deleteDepartment
-module.exports.udpateDepartment = udpateDepartment
+export {
+  createDepartment,
+  getDepartments,
+  getDepartmentById,
+  deleteDepartment,
+  udpateDepartment,
+}

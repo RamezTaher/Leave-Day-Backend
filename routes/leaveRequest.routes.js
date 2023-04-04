@@ -1,12 +1,13 @@
-const {
+import {
   getLeaveRequests,
   getLeaveRequestById,
   createLeaveRequest,
   deleteLeaveRequest,
   udpateLeaveRequest,
-} = require("../controllers/leaveRequest.controllers")
+} from "../controllers/leaveRequest.controllers.js"
+import express from "express"
 
-const router = require("express").Router()
+const router = express.Router()
 
 router.post("/", createLeaveRequest)
 router.get("/", getLeaveRequests)
@@ -14,4 +15,4 @@ router.get("/:id", getLeaveRequestById)
 router.delete("/:id", deleteLeaveRequest)
 router.put("/:id", udpateLeaveRequest)
 
-module.exports = router
+export default router

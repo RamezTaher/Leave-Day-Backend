@@ -1,12 +1,13 @@
-const {
+import {
   createDepartment,
   getDepartments,
   getDepartmentById,
   deleteDepartment,
   udpateDepartment,
-} = require("../controllers/department.controllers")
+} from "../controllers/department.controllers.js"
+import express from "express"
 
-const router = require("express").Router()
+const router = express.Router()
 
 router.post("/", createDepartment)
 router.get("/", getDepartments)
@@ -15,4 +16,4 @@ router.get("/:id", getDepartmentById)
 router.delete("/:id", deleteDepartment)
 router.put("/:id", udpateDepartment)
 
-module.exports = router
+export default router

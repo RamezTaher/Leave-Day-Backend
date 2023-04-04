@@ -1,6 +1,6 @@
-const mongoose = require("mongoose")
+import  mongoose from "mongoose"
 
-const leaveRequestSchema = new mongoose.Schema(
+const leaveRequestSchema = mongoose.Schema(
   {
     employee: {
       type: mongoose.Schema.Types.ObjectId,
@@ -29,4 +29,6 @@ const leaveRequestSchema = new mongoose.Schema(
   { timestamps: true }
 )
 
-module.exports = mongoose.model("LeaveRequest", leaveRequestSchema)
+const LeaveRequest = mongoose.model("LeaveRequest", leaveRequestSchema)
+
+export default LeaveRequest

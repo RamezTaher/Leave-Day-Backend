@@ -1,11 +1,12 @@
-const {
+import {
   getEmployees,
   getEmployeeById,
-} = require("../controllers/employee.controllers")
+} from "../controllers/employee.controllers.js"
+import express from "express"
 
-const router = require("express").Router()
+const router = express.Router()
 
 router.get("/", getEmployees)
 router.get("/:id", getEmployeeById)
 
-module.exports = router
+export default router

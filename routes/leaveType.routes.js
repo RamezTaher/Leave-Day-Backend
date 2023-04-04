@@ -1,17 +1,17 @@
-const {
+import {
   createLeaveType,
   getLeaveTypes,
   getLeaveTypeById,
   deleteLeaveType,
   udpateLeaveType,
-} = require("../controllers/leaveType.controllers")
+} from "../controllers/leaveType.controllers.js"
+import express from "express"
 
-const router = require("express").Router()
-
+const router = express.Router()
 router.post("/", createLeaveType)
 router.get("/", getLeaveTypes)
 router.get("/:id", getLeaveTypeById)
 router.delete("/:id", deleteLeaveType)
 router.put("/:id", udpateLeaveType)
 
-module.exports = router
+export default router

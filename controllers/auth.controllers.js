@@ -1,9 +1,10 @@
-const employeeModels = require("../models/employee.models")
-const bcrypt = require("bcryptjs")
-const jwt = require("jsonwebtoken")
+import Employee from "../models/employee.models.js"
+import bcrypt from "bcryptjs"
+import jwt from "jsonwebtoken"
+
 const register = async (req, res) => {
   try {
-    const existEmail = await employeeModels.findOne({ email: req.body.email })
+    const existEmail = await Employee.findOne({ email: req.body.email })
 
     if (existEmail) {
       return res.status(422).json("Email already exist")
@@ -12,7 +13,7 @@ const register = async (req, res) => {
     const salt = await bcrypt.genSalt(16)
     const hashedPassword = await bcrypt.hash(req.body.password, salt)
 
-    const newEmployee = new employeeModels({
+    const newEmployee = new Employee({
       name: req.body.name,
       email: req.body.email,
       password: hashedPassword,
@@ -29,7 +30,7 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
   try {
-    const existEmployee = await employeeModels.findOne({
+    const existEmployee = await Employee.findOne({
       email: req.body.email,
     })
 
@@ -55,5 +56,4 @@ const login = async (req, res) => {
   }
 }
 
-module.exports.register = register
-module.exports.login = login
+export { login, register }

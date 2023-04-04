@@ -1,26 +1,23 @@
 //import section
-require("dotenv").config()
-const express = require("express")
-const app = express()
-const mongoose = require("mongoose")
-const morgan = require("morgan")
-const helmet = require("helmet")
-const cors = require("cors")
-const compression = require("compression")
+import dotenv from "dotenv"
+import express from "express"
+import mongoose from "mongoose"
+import morgan from "morgan"
+import helmet from "helmet"
+import cors from "cors"
+import compression from "compression"
+
+import authRoutes from "./routes/auth.routes.js"
+import departmentRoutes from "./routes/department.routes.js"
+import employeeRoutes from "./routes/employee.routes.js"
+import leaveTypeRoutes from "./routes/leaveType.routes.js"
+import leaveRequestRoutes from "./routes/leaveRequest.routes.js"
+dotenv.config()
 
 const MONGODB_URI = process.env.MONGODB_URI
 const PORT = process.env.PORT
 
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000")
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PUT, DELETE, OPTIONS"
-  )
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization")
-  res.setHeader("Access-Control-Allow-Credentials", true)
-  next()
-})
+const app = express()
 
 //DB connection
 mongoose.connect(MONGODB_URI)
@@ -32,11 +29,7 @@ mongoose.connection.on("error", (err) => {
 })
 
 //import routes
-const authRoutes = require("./routes/auth.routes")
-const departmentRoutes = require("./routes/department.routes")
-const employeeRoutes = require("./routes/employee.routes")
-const leaveTypeRoutes = require("./routes/leaveType.routes")
-const leaveRequestRoutes = require("./routes/leaveRequest.routes")
+
 //middleware
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
