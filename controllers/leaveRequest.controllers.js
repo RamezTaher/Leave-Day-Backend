@@ -2,8 +2,8 @@ import LeaveRequest from "../models/leaveRequest.models.js"
 
 const createLeaveRequest = async (req, res) => {
   const newLeaveRequest = new LeaveRequest({
-    employee: req.body.employee._id,
-    leaveType: req.body.leaveType._id,
+    employee: req.body.employee,
+    leaveType: req.body.leaveType,
     startDate: req.body.startDate,
     endDate: req.body.endDate,
   })
