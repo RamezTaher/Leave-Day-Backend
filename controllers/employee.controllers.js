@@ -32,4 +32,15 @@ const udpateEmployee = async (req, res) => {
   }
 }
 
-export { getEmployees, getEmployeeById }
+const deleteEmployee = async (req, res) => {
+  const id = req.params.id
+
+  try {
+    const deletedEmployee = await Employee.findByIdAndDelete(id)
+    res.json({ message: "Employee  deleted successfully" })
+  } catch (err) {
+    res.status(500).json(err)
+  }
+}
+
+export { getEmployees, getEmployeeById, udpateEmployee, deleteEmployee }
