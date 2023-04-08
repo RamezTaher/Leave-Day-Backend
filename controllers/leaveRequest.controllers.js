@@ -16,8 +16,14 @@ const createLeaveRequest = async (req, res) => {
 }
 const getLeaveRequests = async (req, res) => {
   try {
-    const leaveRequests = await LeaveRequest.find()
-    return res.status(200).json(leaveRequests)
+    const status = req.query.status
+    if (status) {
+      const leaveRequests = await LeaveRequest.find({ status })
+      return res.status(200).json(leaveRequests)
+    } else {
+      const leaveRequests = await LeaveRequest.find()
+      return res.status(200).json(leaveRequests)
+    }
   } catch (err) {
     return res.status(500).json(err)
   }
