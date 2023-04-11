@@ -33,13 +33,8 @@ mongoose.connection.on("error", (err) => {
 //middleware
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-app.use(morgan("dev"))
-app.use(
-  cors({
-    origin: "https://leave-day-front-end.vercel.app",
-    credentials: true,
-  })
-)
+app.use(morgan())
+app.use(cors())
 app.use(helmet())
 app.use(compression())
 
