@@ -36,7 +36,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(morgan("dev"))
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://leave-day-front-end.vercel.app",
     credentials: true,
   })
 )
